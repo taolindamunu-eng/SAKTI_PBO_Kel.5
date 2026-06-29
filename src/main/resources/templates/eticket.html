@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+E-Ticket SAKTI
+</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI;
+}
+
+body{
+
+    background:#f2f5fa;
+
+    padding:50px;
+}
+
+.ticket{
+
+    width:800px;
+
+    margin:auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.1);
+}
+
+.header{
+
+    background:
+    linear-gradient(
+        90deg,
+        #0d47a1,
+        #1976d2);
+
+    color:white;
+
+    padding:30px;
+}
+
+.header h1{
+
+    font-size:30px;
+}
+
+.content{
+
+    padding:40px;
+}
+
+.row{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    margin:20px 0;
+
+    font-size:18px;
+}
+
+.qr{
+
+    margin-top:40px;
+
+    text-align:center;
+}
+
+.download{
+
+    margin-top:40px;
+
+    text-align:center;
+}
+
+.download a{
+
+    background:#0d47a1;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 30px;
+
+    border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="ticket">
+
+    <div class="header">
+
+        <h1>
+            🎫 SAKTI E-TICKET
+        </h1>
+
+    </div>
+
+    <div class="content">
+
+        <div class="row">
+            <b>ID Tiket</b>
+            <span th:text="${id}"></span>
+        </div>
+
+        <div class="row">
+            <b>Nama</b>
+            <span th:text="${nama}"></span>
+        </div>
+
+        <div class="row">
+            <b>Destinasi</b>
+            <span th:text="${wisata}"></span>
+        </div>
+
+        <div class="row">
+            <b>Harga</b>
+            <span>
+                Rp
+                <span th:text="${harga}">
+                </span>
+            </span>
+        </div>
+
+        <div class="row">
+            <b>Jumlah</b>
+            <span th:text="${jumlah}">
+            </span>
+        </div>
+
+        <div class="row">
+            <b>Total</b>
+            <span>
+                Rp
+                <span th:text="${total}">
+                </span>
+            </span>
+        </div>
+
+        <div class="row">
+            <b>Status</b>
+            <span th:text="${status}">
+            </span>
+        </div>
+
+        <div class="row">
+            <b>Tanggal</b>
+            <span th:text="${tanggal}">
+            </span>
+        </div>
+
+        <div class="qr">
+
+            <h2>
+                🎟️ VALID E-TICKET
+            </h2>
+
+        </div>
+
+        <div class="download">
+
+            <a
+            th:href="@{/report/{id}(id=${id})}">
+                Download PDF
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Destinasi Wisata
+</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI;
+}
+
+body{
+    background:#f4f6fb;
+}
+
+.header{
+
+    background:#0d47a1;
+    color:white;
+
+    padding:25px;
+
+    text-align:center;
+}
+
+.container{
+
+    width:1200px;
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+}
+
+.card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.1);
+}
+
+.card h2{
+
+    color:#0d47a1;
+
+    margin-bottom:15px;
+}
+
+.card p{
+
+    margin:10px 0;
+}
+
+button{
+
+    margin-top:15px;
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    background:#0d47a1;
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>
+        Daftar Destinasi Wisata
+    </h1>
+
+</div>
+
+<div class="container">
+
+    <div class="card"
+         th:each="d : ${destinasi}">
+
+        <h2
+            th:text="${d.namaWisata}">
+        </h2>
+
+        <p>
+            📍
+            <span
+            th:text="${d.detail.lokasi}">
+            </span>
+        </p>
+
+        <p>
+            💰 Rp
+            <span
+            th:text="${d.detail.hargaTiket}">
+            </span>
+        </p>
+
+        <p>
+            🕒
+            <span
+            th:text="${d.detail.jamOperasional}">
+            </span>
+        </p>
+        
+        <a th:href="@{/destinasi/{id}(id=${d.idWisata})}">
+
+            <button>
+                Pesan Tiket
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

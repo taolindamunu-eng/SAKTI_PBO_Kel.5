@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Detail Wisata
+</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+.container{
+
+    width:800px;
+
+    margin:50px auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.1);
+}
+
+h1{
+
+    color:#0d47a1;
+
+    margin-bottom:30px;
+}
+
+.info{
+
+    margin:20px 0;
+
+    font-size:18px;
+}
+
+input{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:10px;
+}
+
+button{
+
+    margin-top:30px;
+
+    width:100%;
+
+    padding:15px;
+
+    background:#0d47a1;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1
+        th:text="${wisata.namaWisata}">
+    </h1>
+
+    <div class="info">
+
+        📍 Lokasi :
+        <span
+        th:text="${wisata.detail.lokasi}">
+        </span>
+
+    </div>
+
+    <div class="info">
+
+        💰 Harga :
+        Rp
+        <span
+        th:text="${wisata.detail.hargaTiket}">
+        </span>
+
+    </div>
+
+    <div class="info">
+
+        🕒 Jam :
+        <span
+        th:text="${wisata.detail.jamOperasional}">
+        </span>
+
+    </div>
+
+    <form
+        action="/pesan"
+        method="post">
+
+        <input
+            type="hidden"
+            name="idWisata"
+            th:value="${wisata.idWisata}">
+
+        <label>
+            Jumlah Tiket
+        </label>
+
+        <input
+            type="number"
+            name="jumlah"
+            value="1"
+            min="1">
+
+        <button>
+
+            PESAN SEKARANG
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

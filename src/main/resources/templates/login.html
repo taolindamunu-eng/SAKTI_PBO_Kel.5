@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Login SAKTI</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI';
+}
+
+body{
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e3c72,
+        #2a5298
+    );
+}
+
+.container{
+
+    width:900px;
+    height:550px;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.3);
+}
+
+/* kiri */
+
+.left{
+
+    flex:1;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.4),
+        rgba(0,0,0,.4)
+    ),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:50px;
+}
+
+.left h1{
+
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.left p{
+
+    line-height:30px;
+    font-size:18px;
+}
+
+/* kanan */
+
+.right{
+
+    flex:1;
+
+    padding:60px;
+}
+
+.right h2{
+
+    color:#1e3c72;
+    margin-bottom:40px;
+}
+
+.input-group{
+
+    margin-bottom:25px;
+}
+
+.input-group label{
+
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+}
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    background:#1e3c72;
+
+    color:white;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    cursor:pointer;
+}
+
+button:hover{
+
+    background:#2a5298;
+}
+
+.register{
+
+    text-align:center;
+    margin-top:20px;
+}
+
+.register a{
+
+    color:#1e3c72;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- KIRI -->
+
+    <div class="left">
+
+        <h1>SAKTI</h1>
+
+        <p>
+            Sistem pemesanan
+            destinasi wisata
+            Sulawesi Tenggara
+            berbasis web.
+        </p>
+
+    </div>
+
+    <!-- KANAN -->
+
+    <div class="right">
+
+        <h2>Login Pengguna</h2>
+
+        <form action="/login" method="post">
+
+            <div class="input-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Masukkan username">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Masukkan password">
+
+            </div>
+
+            <button type="submit">
+                LOGIN
+            </button>
+
+            <div class="register">
+
+                Belum punya akun?
+
+                <a href="/register">
+                    Daftar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

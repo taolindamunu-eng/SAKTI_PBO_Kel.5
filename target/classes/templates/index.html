@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SAKTI</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI';
+}
+
+body{
+    background:#f4f7fb;
+}
+
+/* NAVBAR */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 80px;
+
+    background:white;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#0d6efd;
+}
+
+.menu a{
+    text-decoration:none;
+    margin-left:20px;
+    color:#333;
+    font-weight:500;
+}
+
+.btn{
+    background:#0d6efd;
+    color:white !important;
+
+    padding:10px 20px;
+
+    border-radius:8px;
+}
+
+/* HERO */
+
+.hero{
+
+    height:90vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e3c72,
+        #2a5298
+    );
+
+    color:white;
+}
+
+.hero-text{
+    width:500px;
+}
+
+.hero-text h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero-text p{
+    font-size:20px;
+    line-height:35px;
+    margin-bottom:30px;
+}
+
+.hero-text a{
+
+    background:white;
+    color:#1e3c72;
+
+    padding:15px 30px;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:bold;
+}
+
+.hero-image{
+
+    width:450px;
+    height:450px;
+
+    border-radius:25px;
+
+    background-image:
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+
+    background-size:cover;
+    background-position:center;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.3);
+}
+
+/* FITUR */
+
+.features{
+
+    padding:80px;
+    text-align:center;
+}
+
+.features h2{
+
+    margin-bottom:50px;
+    font-size:35px;
+}
+
+.cards{
+
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+.card{
+
+    width:250px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.1);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#0d6efd;
+}
+
+footer{
+
+    background:#1e3c72;
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        SAKTI
+    </div>
+
+    <div class="menu">
+
+        <a href="#">Beranda</a>
+
+        <a href="#">Tentang</a>
+
+        <a href="#">Destinasi</a>
+
+        <a href="/login" class="btn">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>
+            Sistem Aplikasi
+            Kawasan Wisata
+            Terintegrasi
+        </h1>
+
+        <p>
+            Jelajahi destinasi wisata
+            Sulawesi Tenggara dengan
+            sistem pemesanan tiket
+            online yang mudah,
+            cepat, dan modern.
+        </p>
+
+        <a href="/login">
+            Mulai Sekarang
+        </a>
+
+    </div>
+
+    <div class="hero-image"></div>
+
+</section>
+
+<!-- FITUR -->
+
+<section class="features">
+
+    <h2>
+        Fitur Utama SAKTI
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                🎫 Pesan Tiket
+            </h3>
+
+            <p>
+                Pemesanan tiket
+                wisata secara online.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                🏝 Destinasi
+            </h3>
+
+            <p>
+                Informasi destinasi
+                wisata lengkap.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                🧾 Cetak Struk
+            </h3>
+
+            <p>
+                Cetak tiket dan
+                laporan otomatis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    © 2026 SAKTI
+
+</footer>
+
+</body>
+</html>
