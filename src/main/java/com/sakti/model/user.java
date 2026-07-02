@@ -2,10 +2,10 @@ package com.sakti.model;
 
 public abstract class user {
 
-    protected int id;
-    protected String username;
-    protected String password;
-    protected String nama;
+    private int id;
+    private String username;
+    private String password;
+    private String nama;
 
     public user() {
     }
