@@ -24,7 +24,7 @@ public class DatabaseConnection {
 
             System.out.println("=================================");
             System.out.println("KONEKSI DATABASE BERHASIL");
-            System.out.println("Database : sakti");
+            System.out.println("Database : db_sakti");
             System.out.println("=================================");
 
             return conn;

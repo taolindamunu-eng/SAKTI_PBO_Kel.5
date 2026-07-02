@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Admin - SAKTI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        SAKTI ADMIN
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/admin/destinasi">
+            Destinasi
+        </a>
+
+        <a href="/admin/transaksi">
+            Transaksi
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Selamat Datang,
+        <span th:text="${nama}"></span>
+    </h1>
+
+    <p>
+        Dashboard Administrator Sistem SAKTI
+    </p>
+
+</section>
+
+<!-- MENU -->
+
+<section class="container">
+
+    <div class="card">
+
+        <div class="icon">
+            <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+
+        <h2>Kelola Destinasi</h2>
+
+        <p>
+            Tambah, edit, dan hapus destinasi wisata.
+        </p>
+
+        <a href="/admin/destinasi">
+            Kelola
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon">
+            <i class="fa-solid fa-receipt"></i>
+        </div>
+
+        <h2>Rekap Transaksi</h2>
+
+        <p>
+            Melihat seluruh transaksi pengunjung.
+        </p>
+
+        <a href="/admin/transaksi">
+            Lihat
+        </a>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    © 2026 <strong>SAKTI ADMIN</strong>
+
+</footer>
+
+</body>
+</html>

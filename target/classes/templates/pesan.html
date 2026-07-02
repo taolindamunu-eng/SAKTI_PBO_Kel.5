@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pesan Tiket</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        .container{
+
+            width:700px;
+            max-width:95%;
+
+            margin:50px auto;
+
+        }
+
+        .card{
+
+            background:white;
+
+            padding:40px;
+
+            border-radius:20px;
+
+            box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+        }
+
+        .title{
+
+            text-align:center;
+
+            color:#0d47a1;
+
+            margin-bottom:30px;
+
+        }
+
+        .info{
+
+            margin-bottom:18px;
+
+            font-size:17px;
+
+        }
+
+        .info b{
+
+            display:inline-block;
+
+            width:170px;
+
+        }
+
+        input[type=number]{
+
+            width:100%;
+
+            padding:12px;
+
+            margin-top:10px;
+
+            border-radius:10px;
+
+            border:1px solid #ddd;
+
+            font-size:16px;
+
+        }
+
+        .button-area{
+
+            margin-top:35px;
+
+            display:flex;
+
+            justify-content:center;
+
+            gap:20px;
+
+        }
+
+        .btn{
+
+            padding:14px 30px;
+
+            border:none;
+
+            border-radius:10px;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            color:white;
+
+            font-size:15px;
+
+        }
+
+        .btn-primary{
+
+            background:#0d47a1;
+
+        }
+
+        .btn-primary:hover{
+
+            background:#1565c0;
+
+        }
+
+        .btn-secondary{
+
+            background:#6c757d;
+
+        }
+
+        .btn-secondary:hover{
+
+            background:#555;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        SAKTI
+
+    </div>
+
+    <div class="menu">
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/destinasi">Destinasi</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1 class="title">
+
+            <i class="fa-solid fa-ticket"></i>
+
+            Pesan Tiket
+
+        </h1>
+
+        <div class="info">
+
+            <b>Nama Wisata</b>
+
+            <span th:text="${wisata.namaWisata}"></span>
+
+        </div>
+
+        <div class="info">
+
+            <b>Lokasi</b>
+
+            <span th:text="${wisata.detail.lokasi}"></span>
+
+        </div>
+
+        <div class="info">
+
+            <b>Harga Tiket</b>
+
+            Rp <span th:text="${wisata.detail.hargaTiket}"></span>
+
+        </div>
+
+        <div class="info">
+
+            <b>Jam Operasional</b>
+
+            <span th:text="${wisata.detail.jamOperasional}"></span>
+
+        </div>
+
+        <form action="/pesan" method="post">
+
+            <input
+                    type="hidden"
+                    name="idWisata"
+                    th:value="${wisata.idWisata}">
+
+            <label>
+
+                <b>Jumlah Tiket</b>
+
+            </label>
+
+            <input
+                    type="number"
+                    name="jumlah"
+                    value="1"
+                    min="1"
+                    required>
+
+            <div class="button-area">
+
+                <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    Pesan Sekarang
+
+                </button>
+
+                <a
+                        href="/destinasi"
+                        class="btn btn-secondary">
+
+                    Kembali
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+
+    © 2026 <strong>SAKTI</strong> | Sistem Pemesanan Wisata Sulawesi Tenggara
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rekap Transaksi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        SAKTI ADMIN
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">Dashboard</a>
+
+        <a href="/admin/destinasi">Destinasi</a>
+
+        <a href="/admin/transaksi">Transaksi</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <h1>Rekap Transaksi</h1>
+
+    <p>
+        Seluruh transaksi pemesanan tiket wisata.
+    </p>
+
+</section>
+
+<div class="page">
+
+    <div class="table-card">
+
+        <h2 style="margin-bottom:20px;">
+            Daftar Transaksi
+        </h2>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Pengunjung</th>
+
+                <th>Destinasi</th>
+
+                <th>Tiket</th>
+
+                <th>Total</th>
+
+                <th>Status</th>
+
+                <th>Tanggal</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr th:each="t : ${transaksi}">
+
+                <td th:text="${t.idTransaksi}"></td>
+
+                <td th:text="${t.namaPengunjung}"></td>
+
+                <td th:text="${t.namaWisata}"></td>
+
+                <td th:text="${t.jumlahTiket}"></td>
+
+                <td th:text="${'Rp ' + t.totalBayar}"></td>
+
+                <td>
+
+                    <span
+                            th:text="${t.status}"
+                            style="
+                            background:#2e7d32;
+                            color:white;
+                            padding:6px 12px;
+                            border-radius:20px;">
+                    </span>
+
+                </td>
+
+                <td th:text="${t.tanggal}"></td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+
+    © 2026 <strong>SAKTI ADMIN</strong>
+
+</footer>
+
+</body>
+
+</html>

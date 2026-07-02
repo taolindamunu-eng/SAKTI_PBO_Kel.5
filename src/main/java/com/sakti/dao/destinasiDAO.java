@@ -3,9 +3,9 @@ package com.sakti.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.sakti.config.DatabaseConnection;
 import com.sakti.model.destinasi_wisata;
@@ -61,13 +61,13 @@ public class destinasiDAO {
         }
     }
 
-    public destinasi_wisata cariDestinasi(String idWisata) {
+   public destinasi_wisata cariDestinasi(String idWisata) {
 
     String sql =
         "SELECT dw.id_wisata, dw.nama_wisata, " +
         "dd.harga_tiket, dd.lokasi, dd.jam_operasional " +
         "FROM destinasi_wisata dw " +
-        "JOIN detail_destinasi dd ON dw.id_wisata = dd.id_wisata " +
+        "LEFT JOIN detail_destinasi dd ON dw.id_wisata = dd.id_wisata " +
         "WHERE dw.id_wisata = ?";
 
     try {
@@ -82,8 +82,8 @@ public class destinasiDAO {
             detail_destinasi_wisata detail =
                 new detail_destinasi_wisata(
                     rs.getInt("harga_tiket"),
-                    rs.getString("lokasi"),
-                    rs.getString("jam_operasional")
+                    rs.getString("lokasi") != null ? rs.getString("lokasi") : "-",
+                    rs.getString("jam_operasional") != null ? rs.getString("jam_operasional") : "-"
                 );
 
             return new destinasi_wisata(
@@ -99,7 +99,6 @@ public class destinasiDAO {
 
     return null;
 }
-
     public void tambahDestinasi() {
 
     try {
@@ -343,4 +342,179 @@ public class destinasiDAO {
 
     return daftar;
 }
+
+public void hapusDestinasiWeb(String id){
+
+    try{
+
+        conn.setAutoCommit(false);
+
+        String sql1 =
+                "DELETE FROM detail_destinasi WHERE id_wisata=?";
+
+        PreparedStatement ps1 =
+                conn.prepareStatement(sql1);
+
+        ps1.setString(1,id);
+
+        ps1.executeUpdate();
+
+        String sql2 =
+                "DELETE FROM destinasi_wisata WHERE id_wisata=?";
+
+        PreparedStatement ps2 =
+                conn.prepareStatement(sql2);
+
+        ps2.setString(1,id);
+
+        ps2.executeUpdate();
+
+        conn.commit();
+
+    }catch(Exception e){
+
+        try{
+            conn.rollback();
+        }catch(Exception ex){}
+
+        e.printStackTrace();
+    }
+
+}
+
+public void editDestinasiWeb(
+
+        String id,
+        String nama,
+        int harga,
+        String lokasi,
+        String jam){
+
+    try{
+
+        conn.setAutoCommit(false);
+
+        String sql1 =
+                "UPDATE destinasi_wisata SET nama_wisata=? WHERE id_wisata=?";
+
+        PreparedStatement ps1 =
+                conn.prepareStatement(sql1);
+
+        ps1.setString(1,nama);
+        ps1.setString(2,id);
+
+        ps1.executeUpdate();
+
+        String sql2 =
+                "UPDATE detail_destinasi SET harga_tiket=?, lokasi=?, jam_operasional=? WHERE id_wisata=?";
+
+        PreparedStatement ps2 =
+                conn.prepareStatement(sql2);
+
+        ps2.setInt(1,harga);
+        ps2.setString(2,lokasi);
+        ps2.setString(3,jam);
+        ps2.setString(4,id);
+
+        ps2.executeUpdate();
+
+        conn.commit();
+
+    }catch(Exception e){
+
+        try{
+            conn.rollback();
+        }catch(Exception ex){}
+
+        e.printStackTrace();
+    }
+
+}
+
+public void tambahDestinasi(
+        String id,
+        String nama,
+        int harga,
+        String lokasi,
+        String jam) {
+
+    try {
+
+        conn.setAutoCommit(false);
+
+        String sql1 =
+                "INSERT INTO destinasi_wisata VALUES (?, ?)";
+
+        PreparedStatement ps1 =
+                conn.prepareStatement(sql1);
+
+        ps1.setString(1, id);
+        ps1.setString(2, nama);
+        ps1.executeUpdate();
+
+        String sql2 =
+                "INSERT INTO detail_destinasi(id_wisata, harga_tiket, lokasi, jam_operasional) VALUES (?, ?, ?, ?)";
+
+        PreparedStatement ps2 =
+                conn.prepareStatement(sql2);
+
+        ps2.setString(1, id);
+        ps2.setInt(2, harga);
+        ps2.setString(3, lokasi);
+        ps2.setString(4, jam);
+
+        ps2.executeUpdate();
+
+        conn.commit();
+
+    } catch (Exception e) {
+
+        try {
+            conn.rollback();
+        } catch (Exception ex) {
+        }
+
+        e.printStackTrace();
+    }
+}
+
+public List<destinasi_wisata> cariDestinasiByNama(String keyword){
+
+    List<destinasi_wisata> list =
+            new ArrayList<>();
+
+    String sql =
+            "SELECT * " +
+            "FROM destinasi_wisata " +
+            "WHERE nama_wisata LIKE ?";
+
+    try{
+
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        ps.setString(1,"%"+keyword+"%");
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        while(rs.next()){
+
+            destinasi_wisata d =
+                    cariDestinasi(rs.getString("id_wisata"));
+
+            list.add(d);
+
+        }
+
+    }catch(Exception e){
+
+        System.out.println(e.getMessage());
+
+    }
+
+    return list;
+
+}
+
 }

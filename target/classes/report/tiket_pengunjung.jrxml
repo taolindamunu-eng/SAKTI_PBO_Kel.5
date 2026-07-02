@@ -1,66 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+
+<jasperReport
+    xmlns="http://jasperreports.sourceforge.net/jasperreports"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
-    http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
     name="tiket_pengunjung"
-    pageWidth="595" pageHeight="842" columnWidth="555">
+    pageWidth="595"
+    pageHeight="842"
+    columnWidth="555"
+    leftMargin="20"
+    rightMargin="20"
+    topMargin="20"
+    bottomMargin="20">
 
-    <parameter
-        name="id_transaksi"
-        class="java.lang.String"/>
+    <parameter name="id_transaksi" class="java.lang.String"/>
 
-    <queryString>
-        <![CDATA[
-       SELECT  
-    d.nama_wisata, 
-    dd.harga_tiket, 
-    t.jumlah_tiket, 
-    t.total_bayar, 
+    <queryString><![CDATA[
+SELECT
+    t.id_transaksi,
+    u.nama,
+    d.nama_wisata,
+    dd.harga_tiket,
+    t.jumlah_tiket,
+    t.total_bayar,
+    t.status,
     t.tanggal
 FROM transaksi t
-JOIN destinasi_wisata d ON t.id_wisata = d.id_wisata
-JOIN detail_destinasi dd ON dd.id_wisata = d.id_wisata
-WHERE t.id_transaksi = $P{id_transaksi}
-ORDER BY t.tanggal DESC  LIMIT 1
-        ]]>
-    </queryString>
+JOIN users u
+ON u.id_user=t.id_user
+JOIN destinasi_wisata d
+ON d.id_wisata=t.id_wisata
+JOIN detail_destinasi dd
+ON dd.id_wisata=d.id_wisata
+WHERE t.id_transaksi=$P{id_transaksi}
+LIMIT 1
+    ]]></queryString>
 
+    <field name="id_transaksi" class="java.lang.String"/>
+    <field name="nama" class="java.lang.String"/>
     <field name="nama_wisata" class="java.lang.String"/>
     <field name="harga_tiket" class="java.lang.Integer"/>
     <field name="jumlah_tiket" class="java.lang.Integer"/>
     <field name="total_bayar" class="java.lang.Integer"/>
+    <field name="status" class="java.lang.String"/>
     <field name="tanggal" class="java.sql.Timestamp"/>
 
+    <!-- HEADER -->
+    <title>
+        <band height="70">
+
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="70" backcolor="#0D47A1"/>
+                <graphicElement/>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="20" y="15" width="300" height="30" forecolor="#FFFFFF"/>
+                <textElement>
+                    <font size="22" isBold="true"/>
+                </textElement>
+                <text><![CDATA[SAKTI E-TICKET]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="20" y="45" width="300" height="20" forecolor="#FFFFFF"/>
+                <text><![CDATA[Sistem Pemesanan Wisata Sulawesi Tenggara]]></text>
+            </staticText>
+
+        </band>
+    </title>
+
+    <!-- DETAIL -->
     <detail>
-    <band height="120">
 
-        <textField>
-            <reportElement x="0" y="0" width="300" height="20"/>
-            <textFieldExpression><![CDATA[$F{nama_wisata}]]></textFieldExpression>
-        </textField>
+        <band height="280">
 
-        <textField>
-            <reportElement x="0" y="20" width="300" height="20"/>
-            <textFieldExpression><![CDATA["Harga: Rp " + $F{harga_tiket}]]></textFieldExpression>
-        </textField>
+            <staticText>
+                <reportElement x="20" y="10" width="150" height="20"/>
+                <text><![CDATA[ID Tiket]]></text>
+            </staticText>
 
-        <textField>
-            <reportElement x="0" y="40" width="300" height="20"/>
-            <textFieldExpression><![CDATA["Jumlah: " + $F{jumlah_tiket}]]></textFieldExpression>
-        </textField>
+            <textField>
+                <reportElement x="180" y="10" width="300" height="20"/>
+                <textFieldExpression><![CDATA[$F{id_transaksi}]]></textFieldExpression>
+            </textField>
 
-        <textField>
-            <reportElement x="0" y="60" width="300" height="20"/>
-            <textFieldExpression><![CDATA["Total: Rp " + $F{total_bayar}]]></textFieldExpression>
-        </textField>
+            <staticText>
+                <reportElement x="20" y="40" width="150" height="20"/>
+                <text><![CDATA[Nama Pengunjung]]></text>
+            </staticText>
 
-        <textField>
-            <reportElement x="0" y="80" width="300" height="20"/>
-            <textFieldExpression><![CDATA["Tanggal: " + $F{tanggal}]]></textFieldExpression>
-        </textField>
+            <textField>
+                <reportElement x="180" y="40" width="300" height="20"/>
+                <textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+            </textField>
 
-    </band>
-</detail>
+            <staticText>
+                <reportElement x="20" y="70" width="150" height="20"/>
+                <text><![CDATA[Destinasi]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="180" y="70" width="300" height="20"/>
+                <textFieldExpression><![CDATA[$F{nama_wisata}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="20" y="100" width="150" height="20"/>
+                <text><![CDATA[Harga Tiket]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="180" y="100" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Rp " + $F{harga_tiket}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="20" y="130" width="150" height="20"/>
+                <text><![CDATA[Jumlah Tiket]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="180" y="130" width="300" height="20"/>
+                <textFieldExpression><![CDATA[$F{jumlah_tiket}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="20" y="160" width="150" height="20"/>
+                <text><![CDATA[Total Bayar]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="180" y="160" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Rp " + $F{total_bayar}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="20" y="190" width="150" height="20"/>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="180" y="190" width="300" height="20"/>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="20" y="220" width="150" height="20"/>
+                <text><![CDATA[Tanggal]]></text>
+            </staticText>
+
+            <textField pattern="dd-MM-yyyy HH:mm">
+                <reportElement x="180" y="220" width="300" height="20"/>
+                <textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+            </textField>
+
+        </band>
+
+    </detail>
+
+    <!-- FOOTER -->
+    <pageFooter>
+
+        <band height="45">
+
+            <line>
+                <reportElement x="0" y="5" width="555" height="1"/>
+            </line>
+
+            <staticText>
+                <reportElement x="0" y="18" width="555" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[VALID E-TICKET | SAKTI]]></text>
+            </staticText>
+
+        </band>
+
+    </pageFooter>
 
 </jasperReport>

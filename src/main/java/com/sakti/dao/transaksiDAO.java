@@ -3,6 +3,7 @@ package com.sakti.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import com.sakti.config.DatabaseConnection;
 
 public class transaksiDAO {
@@ -130,6 +131,149 @@ public ResultSet getETicket(String idTransaksi){
     }catch(Exception e){
 
         e.printStackTrace();
+    }
+
+    return null;
+}
+
+public java.util.List<com.sakti.model.TransaksiView> getAllTransaksi() {
+
+    java.util.List<com.sakti.model.TransaksiView> daftar =
+            new java.util.ArrayList<>();
+
+    String sql =
+            "SELECT t.id_transaksi, " +
+            "u.nama, " +
+            "d.nama_wisata, " +
+            "t.jumlah_tiket, " +
+            "t.total_bayar, " +
+            "t.status, " +
+            "t.tanggal " +
+            "FROM transaksi t " +
+            "JOIN users u ON t.id_user=u.id_user " +
+            "JOIN destinasi_wisata d ON t.id_wisata=d.id_wisata " +
+            "ORDER BY t.tanggal DESC";
+
+    try {
+
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        while(rs.next()){
+
+            com.sakti.model.TransaksiView t =
+                    new com.sakti.model.TransaksiView();
+
+            t.setIdTransaksi(
+                    rs.getString("id_transaksi"));
+
+            t.setNamaPengunjung(
+                    rs.getString("nama"));
+
+            t.setNamaWisata(
+                    rs.getString("nama_wisata"));
+
+            t.setJumlahTiket(
+                    rs.getInt("jumlah_tiket"));
+
+            t.setTotalBayar(
+                    rs.getInt("total_bayar"));
+
+            t.setStatus(
+                    rs.getString("status"));
+
+            t.setTanggal(
+                    rs.getTimestamp("tanggal"));
+
+            daftar.add(t);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return daftar;
+}
+
+public String simpanTransaksiOtomatis(
+        int idUser,
+        String idWisata,
+        int jumlahTiket) {
+
+    try {
+
+        String idTransaksi = "";
+
+        String sqlId =
+                "SELECT COUNT(*) + 1 AS nomor FROM transaksi";
+
+        PreparedStatement psId =
+                conn.prepareStatement(sqlId);
+
+        ResultSet rs =
+                psId.executeQuery();
+
+        if (rs.next()) {
+
+            idTransaksi =
+                    String.format("TR%03d", rs.getInt("nomor"));
+
+        }
+
+        String sqlHarga =
+                "SELECT harga_tiket FROM detail_destinasi WHERE id_wisata=?";
+
+        PreparedStatement psHarga =
+                conn.prepareStatement(sqlHarga);
+
+        psHarga.setString(1, idWisata);
+
+        ResultSet rsHarga =
+                psHarga.executeQuery();
+
+        int harga = 0;
+
+        if (rsHarga.next()) {
+
+            harga = rsHarga.getInt("harga_tiket");
+
+        }
+
+        int total = harga * jumlahTiket;
+
+        String sql =
+                "INSERT INTO transaksi(" +
+                "id_transaksi," +
+                "id_user," +
+                "id_wisata," +
+                "jumlah_tiket," +
+                "total_bayar," +
+                "status) " +
+                "VALUES(?,?,?,?,?,?)";
+
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        ps.setString(1, idTransaksi);
+        ps.setInt(2, idUser);
+        ps.setString(3, idWisata);
+        ps.setInt(4, jumlahTiket);
+        ps.setInt(5, total);
+        ps.setString(6, "LUNAS");
+
+        ps.executeUpdate();
+
+        return idTransaksi;
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
     }
 
     return null;

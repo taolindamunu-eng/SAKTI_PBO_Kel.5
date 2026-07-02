@@ -25,26 +25,34 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public String prosesLogin(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password,
-            HttpSession session) {
+public String prosesLogin(
+        @RequestParam("username") String username,
+        @RequestParam("password") String password,
+        HttpSession session) {
 
-        pengunjung user =
-                userDao.login(
-                        username,
-                        password
-                );
+    pengunjung user =
+            userDao.login(
+                    username,
+                    password
+            );
 
-        if(user != null){
+    if (user != null) {
 
-            session.setAttribute(
-                    "userLogin",
-                    user);
+        session.setAttribute(
+                "userLogin",
+                user);
+
+        if ("ADMIN".equalsIgnoreCase(user.getRole())) {
+
+            return "redirect:/admin/dashboard";
+
+        } else {
 
             return "redirect:/dashboard";
-        }
 
-        return "redirect:/login";
+        }
     }
+
+    return "redirect:/login";
+}
 }

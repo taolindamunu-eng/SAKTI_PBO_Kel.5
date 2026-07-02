@@ -7,11 +7,17 @@ import java.util.HashMap;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.sakti.config.DatabaseConnection;
 
-import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 @RestController
 public class ReportController {
@@ -22,12 +28,15 @@ public class ReportController {
 
         try {
 
-            Connection conn =
-                    DatabaseConnection.getConnection();
+            Connection conn = DatabaseConnection.getConnection();
 
-            InputStream file =
-                    getClass().getResourceAsStream(
-                            "/report/tiket_pengunjung.jrxml");
+            InputStream file = getClass().getResourceAsStream(
+                    "/report/tiket_pengunjung.jrxml");
+
+            if (file == null) {
+                throw new RuntimeException(
+                        "File tiket_pengunjung.jrxml tidak ditemukan di folder resources/report");
+            }
 
             JasperReport report =
                     JasperCompileManager.compileReport(file);
@@ -57,9 +66,11 @@ public class ReportController {
 
             e.printStackTrace();
 
-            return ResponseEntity.internalServerError().build();
+            String pesan = e.toString();
+
+            return ResponseEntity.status(500)
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body(pesan.getBytes());
         }
-
     }
-
 }

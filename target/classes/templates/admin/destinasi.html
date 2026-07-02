@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelola Destinasi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        SAKTI ADMIN
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">Dashboard</a>
+
+        <a href="/admin/destinasi">Destinasi</a>
+
+        <a href="/admin/transaksi">Transaksi</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <h1>Kelola Destinasi Wisata</h1>
+
+    <p>
+        Tambah, ubah, dan hapus data destinasi wisata.
+    </p>
+
+</section>
+
+<div class="page">
+
+    <div class="table-card">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+
+            <h2>Daftar Destinasi</h2>
+
+            <a href="/admin/destinasi/tambah"
+               class="btn btn-success">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Tambah Destinasi
+
+            </a>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Nama Wisata</th>
+
+                <th>Harga</th>
+
+                <th>Lokasi</th>
+
+                <th>Jam Operasional</th>
+
+                <th>Aksi</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr th:each="d : ${destinasi}">
+
+                <td th:text="${d.idWisata}"></td>
+
+                <td th:text="${d.namaWisata}"></td>
+
+                <td th:text="${'Rp ' + d.detail.hargaTiket}"></td>
+
+                <td th:text="${d.detail.lokasi}"></td>
+
+                <td th:text="${d.detail.jamOperasional}"></td>
+
+                <td>
+
+                    <a th:href="@{'/admin/destinasi/edit/' + ${d.idWisata}}"
+                       class="btn btn-primary">
+
+                        Edit
+
+                    </a>
+
+                    <a th:href="@{'/admin/destinasi/hapus/' + ${d.idWisata}}"
+                       class="btn btn-danger"
+                       onclick="return confirm('Yakin ingin menghapus destinasi ini?')">
+
+                        Hapus
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+
+    © 2026 <strong>SAKTI ADMIN</strong>
+
+</footer>
+
+</body>
+</html>

@@ -15,31 +15,40 @@ E-Ticket SAKTI
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI;
+    font-family:'Poppins',sans-serif;
+
 }
 
 body{
 
-    background:#f2f5fa;
+    background:#f4f7fb;
 
-    padding:50px;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:40px;
 }
 
 .ticket{
 
-    width:800px;
+    width:850px;
 
-    margin:auto;
+    max-width:100%;
 
     background:white;
 
-    border-radius:20px;
+    border-radius:22px;
 
     overflow:hidden;
 
-    box-shadow:
-    0 10px 30px
-    rgba(0,0,0,.1);
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+    animation:fadeUp .8s;
 }
 
 .header{
@@ -52,12 +61,19 @@ body{
 
     color:white;
 
-    padding:30px;
+    padding:35px;
 }
 
 .header h1{
 
-    font-size:30px;
+    font-size:36px;
+
+    margin-bottom:8px;
+}
+
+.header p{
+
+    opacity:.9;
 }
 
 .content{
@@ -69,12 +85,28 @@ body{
 
     display:flex;
 
-    justify-content:
-    space-between;
+    justify-content:space-between;
 
-    margin:20px 0;
+    align-items:center;
 
-    font-size:18px;
+    padding:14px 0;
+
+    border-bottom:1px solid #eee;
+
+    font-size:17px;
+}
+
+.status{
+
+    background:#d4edda;
+
+    color:#155724;
+
+    padding:8px 20px;
+
+    border-radius:30px;
+
+    font-weight:bold;
 }
 
 .qr{
@@ -82,6 +114,18 @@ body{
     margin-top:40px;
 
     text-align:center;
+}
+
+.qr h2{
+
+    color:#0d47a1;
+
+    margin-bottom:10px;
+}
+
+.qr p{
+
+    color:#666;
 }
 
 .download{
@@ -93,19 +137,52 @@ body{
 
 .download a{
 
+    display:inline-block;
+
+    padding:15px 35px;
+
     background:#0d47a1;
 
     color:white;
 
+    border-radius:40px;
+
     text-decoration:none;
 
-    padding:15px 30px;
+    transition:.3s;
+}
 
-    border-radius:10px;
+.download a:hover{
+
+    background:#1565c0;
+
+    transform:translateY(-3px);
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
 }
 
 </style>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 </head>
 
 <body>
@@ -114,9 +191,9 @@ body{
 
     <div class="header">
 
-        <h1>
-            🎫 SAKTI E-TICKET
-        </h1>
+        <h1>🎫 SAKTI E-TICKET</h1>
+
+<p>Sistem Pemesanan Wisata Sulawesi Tenggara</p>
 
     </div>
 
@@ -163,8 +240,9 @@ body{
 
         <div class="row">
             <b>Status</b>
-            <span th:text="${status}">
-            </span>
+            <span class="status"
+      th:text="${status}">
+</span>
         </div>
 
         <div class="row">
@@ -175,11 +253,15 @@ body{
 
         <div class="qr">
 
-            <h2>
-                🎟️ VALID E-TICKET
-            </h2>
+<h2>🎟 VALID E-TICKET</h2>
 
-        </div>
+<p>
+
+Silakan tunjukkan tiket ini kepada petugas saat memasuki lokasi wisata.
+
+</p>
+
+</div>
 
         <div class="download">
 

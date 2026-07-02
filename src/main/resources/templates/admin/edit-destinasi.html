@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Destinasi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        SAKTI ADMIN
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">Dashboard</a>
+
+        <a href="/admin/destinasi">Destinasi</a>
+
+        <a href="/admin/transaksi">Transaksi</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <h1>Edit Destinasi Wisata</h1>
+
+    <p>Perbarui informasi destinasi wisata.</p>
+
+</section>
+
+<div class="form-card">
+
+<form action="/admin/destinasi/update" method="post">
+
+<label>ID Wisata</label>
+
+<input
+type="text"
+name="idWisata"
+th:value="${wisata.idWisata}"
+readonly>
+
+<label>Nama Wisata</label>
+
+<input
+type="text"
+name="namaWisata"
+th:value="${wisata.namaWisata}"
+required>
+
+<label>Harga Tiket</label>
+
+<input
+type="number"
+name="harga"
+th:value="${wisata.detail.hargaTiket}"
+required>
+
+<label>Lokasi</label>
+
+<input
+type="text"
+name="lokasi"
+th:value="${wisata.detail.lokasi}"
+required>
+
+<label>Jam Operasional</label>
+
+<input
+type="text"
+name="jam"
+th:value="${wisata.detail.jamOperasional}"
+required>
+
+<button
+class="btn btn-primary"
+type="submit">
+
+<i class="fa-solid fa-pen-to-square"></i>
+
+Update
+
+</button>
+
+<a
+href="/admin/destinasi"
+class="btn btn-danger">
+
+Batal
+
+</a>
+
+</form>
+
+</div>
+
+<footer class="footer">
+
+© 2026 <strong>SAKTI ADMIN</strong>
+
+</footer>
+
+</body>
+
+</html>

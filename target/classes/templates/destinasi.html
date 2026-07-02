@@ -1,151 +1,151 @@
 <!DOCTYPE html>
-<html
-xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-Destinasi Wisata
-</title>
+    <title>Destinasi Wisata</title>
 
-<style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI;
-}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-body{
-    background:#f4f6fb;
-}
-
-.header{
-
-    background:#0d47a1;
-    color:white;
-
-    padding:25px;
-
-    text-align:center;
-}
-
-.container{
-
-    width:1200px;
-
-    margin:40px auto;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:25px;
-}
-
-.card{
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:
-    0 5px 20px
-    rgba(0,0,0,.1);
-}
-
-.card h2{
-
-    color:#0d47a1;
-
-    margin-bottom:15px;
-}
-
-.card p{
-
-    margin:10px 0;
-}
-
-button{
-
-    margin-top:15px;
-
-    width:100%;
-
-    padding:12px;
-
-    border:none;
-
-    background:#0d47a1;
-
-    color:white;
-
-    border-radius:10px;
-
-    cursor:pointer;
-}
-
-</style>
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
 
-<div class="header">
+<!-- ================= NAVBAR ================= -->
 
-    <h1>
-        Daftar Destinasi Wisata
-    </h1>
+<nav class="navbar">
 
-</div>
+    <div class="logo">
+        SAKTI
+    </div>
 
-<div class="container">
+    <div class="menu">
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/destinasi">Destinasi</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>Destinasi Wisata</h1>
+
+    <p>
+        Jelajahi destinasi wisata terbaik di Sulawesi Tenggara.
+    </p>
+
+    <form action="/destinasi"
+          method="get"
+          class="search-box">
+
+        <input
+                type="text"
+                name="keyword"
+                th:value="${keyword}"
+                placeholder="Cari destinasi wisata...">
+
+        <button type="submit">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            Cari
+
+        </button>
+
+    </form>
+
+</section>
+
+<!-- ================= DESTINASI ================= -->
+
+<section class="container">
 
     <div class="card"
+
          th:each="d : ${destinasi}">
 
-        <h2
-            th:text="${d.namaWisata}">
+        <div class="icon">
+
+            <i class="fa-solid fa-map-location-dot"></i>
+
+        </div>
+
+        <h2 th:text="${d.namaWisata}">
+            Nama Wisata
         </h2>
 
         <p>
-            📍
-            <span
-            th:text="${d.detail.lokasi}">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span th:text="${d.detail.lokasi}">
+                Lokasi
             </span>
+
         </p>
 
         <p>
-            💰 Rp
-            <span
-            th:text="${d.detail.hargaTiket}">
+
+            <i class="fa-solid fa-money-bill-wave"></i>
+
+            Rp
+            <span th:text="${d.detail.hargaTiket}">
+                20000
             </span>
+
         </p>
 
         <p>
-            🕒
-            <span
-            th:text="${d.detail.jamOperasional}">
-            </span>
-        </p>
-        
-        <a th:href="@{/destinasi/{id}(id=${d.idWisata})}">
 
-            <button>
-                Pesan Tiket
-            </button>
+            <i class="fa-solid fa-clock"></i>
+
+            <span th:text="${d.detail.jamOperasional}">
+                08.00 - 17.00
+            </span>
+
+        </p>
+
+        <a
+           th:href="@{/destinasi/{id}(id=${d.idWisata})}">
+
+            <i class="fa-solid fa-eye"></i>
+
+            Lihat Detail
 
         </a>
 
     </div>
 
-</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    © 2026 <strong>SAKTI</strong>
+
+    <br>
+
+    Sistem Pemesanan Wisata Sulawesi Tenggara
+
+</footer>
 
 </body>
+
 </html>

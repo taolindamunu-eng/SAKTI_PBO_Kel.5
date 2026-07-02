@@ -1,0 +1,584 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 60px;
+
+            background: #0d47a1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .menu a:hover {
+            color: #FFD54F;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero{
+
+    min-height:500px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:white;
+
+    background:
+        linear-gradient(rgba(13,71,161,.72),
+        rgba(25,118,210,.72)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+
+    background-size:cover;
+    background-position:center;
+}
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* ================= SEARCH ================= */
+
+.search-box{
+
+    margin-top:35px;
+
+    display:flex;
+
+    gap:12px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+}
+
+.search-box input{
+
+    width:420px;
+
+    max-width:90vw;
+
+    padding:15px 20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.search-box button{
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#FFD54F;
+
+    color:#0d47a1;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.search-box button:hover{
+
+    background:#ffca28;
+
+    transform:translateY(-2px);
+}
+
+.search-box input{
+
+    width:420px;
+
+    max-width:90%;
+
+    padding:14px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.search-box button{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#FFD54F;
+
+    color:#0d47a1;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.search-box button:hover{
+
+    background:#ffca28;
+
+    transform:translateY(-2px);
+}
+
+        /* ================= CONTAINER ================= */
+
+       .container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:80px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+    gap:35px;
+}
+
+        /* ================= CARD ================= */
+
+        .card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+            box-shadow: 0 12px 25px rgba(0, 0, 0, .08);
+
+            transition: .35s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 35px rgba(0, 0, 0, .15);
+        }
+
+        .icon {
+
+            width: 90px;
+            height: 90px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #e3f2fd;
+
+            color: #0d47a1;
+
+            font-size: 38px;
+        }
+
+        .card h2 {
+
+            margin-top: 20px;
+
+            color: #0d47a1;
+
+            font-size: 24px;
+        }
+
+        .card p {
+
+            margin-top: 15px;
+
+            color: #666;
+
+            line-height: 1.7;
+        }
+
+        .card a {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 12px 35px;
+
+            border-radius: 50px;
+
+            background: #0d47a1;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            transition: .3s;
+        }
+
+        .card a:hover {
+
+            background: #1565c0;
+
+            transform: scale(1.05);
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+
+            padding: 25px;
+
+            text-align: center;
+
+            background: white;
+
+            color: #777;
+
+            border-top: 1px solid #ddd;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .menu {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                height: 240px;
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .container {
+
+                margin-top: -45px;
+
+                grid-template-columns: 1fr;
+            }
+        }
+  
+/* ================= PAGE ================= */
+
+.page {
+    width: 92%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* ================= TABLE CARD ================= */
+
+.table-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+/* ================= TABLE ================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+
+    background: #0d47a1;
+    color: white;
+
+    padding: 15px;
+    text-align: center;
+}
+
+table td {
+
+    padding: 14px;
+
+    border-bottom: 1px solid #ececec;
+
+    text-align: center;
+}
+
+table tr:hover {
+
+    background: #f5f9ff;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.btn-primary{
+
+    background:#0d47a1;
+}
+
+.btn-primary:hover{
+
+    background:#1565c0;
+}
+
+.btn-success{
+
+    background:#2e7d32;
+}
+
+.btn-success:hover{
+
+    background:#388e3c;
+}
+
+.btn-danger{
+
+    background:#d32f2f;
+}
+
+.btn-danger:hover{
+
+    background:#e53935;
+}
+
+/* ================= FORM ================= */
+
+.form-card{
+
+    width:650px;
+
+    max-width:95%;
+
+    margin:50px auto;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.form-card input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:8px;
+    margin-bottom:18px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+}
+
+.form-card label{
+
+    font-weight:600;
+}
+
+button.btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-family:'Poppins',sans-serif;
+}
+
+/* ================= FORM BUTTON ================= */
+
+.form-card .btn{
+
+    width:100%;
+
+    text-align:center;
+
+    margin-top:10px;
+}
+
+.form-card .btn-danger{
+
+    display:block;
+}
+
+/* ================= INPUT FOCUS ================= */
+
+.form-card input:focus{
+
+    outline:none;
+
+    border:1px solid #0d47a1;
+
+    box-shadow:0 0 8px rgba(13,71,161,.2);
+}
+
+/* ================= BADGE ================= */
+
+.badge{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+.badge-success{
+
+    background:#2e7d32;
+}
+
+.badge-danger{
+
+    background:#d32f2f;
+}
+
+/* ================= SMALL ANIMATION ================= */
+
+.card,
+.table-card,
+.form-card{
+
+    animation:fade .5s ease;
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+}
