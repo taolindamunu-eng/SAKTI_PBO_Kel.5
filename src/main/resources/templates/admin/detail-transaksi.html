@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Detail Transaksi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+
+background:#f4f6fb;
+
+}
+
+.container{
+
+width:600px;
+
+margin:50px auto;
+
+background:white;
+
+padding:40px;
+
+border-radius:15px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+}
+
+h2{
+
+margin-bottom:30px;
+
+color:#0d47a1;
+
+}
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+label{
+
+display:block;
+
+font-weight:bold;
+
+margin-bottom:8px;
+
+}
+
+input{
+
+width:100%;
+
+padding:12px;
+
+border:1px solid #ddd;
+
+border-radius:8px;
+
+background:#f7f7f7;
+
+}
+
+select{
+
+width:100%;
+
+padding:12px;
+
+border:1px solid #ddd;
+
+border-radius:8px;
+
+}
+
+button{
+
+margin-top:20px;
+
+width:100%;
+
+padding:14px;
+
+background:#0d47a1;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#1565c0;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Detail Transaksi</h2>
+
+<form
+th:action="@{/admin/transaksi/update}"
+method="post">
+
+<input
+type="hidden"
+name="idTransaksi"
+th:value="${transaksi.idTransaksi}">
+
+<div class="form-group">
+
+<label>ID Transaksi</label>
+
+<input
+readonly
+th:value="${transaksi.idTransaksi}">
+
+</div>
+
+<div class="form-group">
+
+<label>Nama Pengunjung</label>
+
+<input
+readonly
+th:value="${transaksi.namaPengunjung}">
+
+</div>
+
+<div class="form-group">
+
+<label>Destinasi</label>
+
+<input
+readonly
+th:value="${transaksi.namaWisata}">
+
+</div>
+
+<div class="form-group">
+
+<label>Jumlah Tiket</label>
+
+<input
+readonly
+th:value="${transaksi.jumlahTiket}">
+
+</div>
+
+<div class="form-group">
+
+<label>Total Pembayaran</label>
+
+<input
+readonly
+th:value="${'Rp ' + transaksi.totalBayar}">
+
+</div>
+
+<div class="form-group">
+
+<label>Status Pembayaran</label>
+
+<select name="status">
+
+<option
+value="MENUNGGU PEMBAYARAN"
+th:selected="${transaksi.status=='MENUNGGU PEMBAYARAN'}">
+
+MENUNGGU PEMBAYARAN
+
+</option>
+
+<option
+value="LUNAS"
+th:selected="${transaksi.status=='LUNAS'}">
+
+LUNAS
+
+</option>
+
+</select>
+
+</div>
+
+<button>
+
+SIMPAN PERUBAHAN
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

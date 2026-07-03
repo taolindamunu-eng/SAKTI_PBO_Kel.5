@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.sakti.config.DatabaseConnection;
+import com.sakti.model.TransaksiView;
 
 public class transaksiDAO {
     
@@ -93,13 +94,58 @@ public void simpanTransaksi(String id_transaksi, int id_user,
         ps.setString(3, id_wisata);
         ps.setInt(4, jumlah_tiket);
         ps.setInt(5, total_bayar);
-        ps.setString(6, "BERHASIL");
+        ps.setString(6, "MENUNGGU PEMBAYARAN");
 
         ps.executeUpdate();
 
     } catch (Exception e) {
         System.out.println("Gagal simpan transaksi: " + e.getMessage());
     }
+}
+public TransaksiView getTransaksiById(String idTransaksi) {
+
+    String sql =
+            "SELECT t.id_transaksi, " +
+            "u.nama, " +
+            "d.nama_wisata, " +
+            "t.jumlah_tiket, " +
+            "t.total_bayar, " +
+            "t.status, " +
+            "t.tanggal " +
+            "FROM transaksi t " +
+            "JOIN users u ON t.id_user = u.id_user " +
+            "JOIN destinasi_wisata d ON t.id_wisata = d.id_wisata " +
+            "WHERE t.id_transaksi = ?";
+
+    try {
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, idTransaksi);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            TransaksiView transaksi = new TransaksiView();
+
+            transaksi.setIdTransaksi(rs.getString("id_transaksi"));
+            transaksi.setNamaPengunjung(rs.getString("nama"));
+            transaksi.setNamaWisata(rs.getString("nama_wisata"));
+            transaksi.setJumlahTiket(rs.getInt("jumlah_tiket"));
+            transaksi.setTotalBayar(rs.getInt("total_bayar"));
+            transaksi.setStatus(rs.getString("status"));
+            transaksi.setTanggal(rs.getTimestamp("tanggal"));
+
+            return transaksi;
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return null;
 }
 
 public ResultSet getETicket(String idTransaksi){
@@ -264,7 +310,7 @@ public String simpanTransaksiOtomatis(
         ps.setString(3, idWisata);
         ps.setInt(4, jumlahTiket);
         ps.setInt(5, total);
-        ps.setString(6, "LUNAS");
+        ps.setString(6, "MENUNGGU PEMBAYARAN");
 
         ps.executeUpdate();
 
@@ -277,6 +323,30 @@ public String simpanTransaksiOtomatis(
     }
 
     return null;
+}
+public boolean updateStatus(String idTransaksi, String status){
+
+    String sql =
+            "UPDATE transaksi SET status=? WHERE id_transaksi=?";
+
+    try{
+
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        ps.setString(1, status);
+        ps.setString(2, idTransaksi);
+
+        return ps.executeUpdate() > 0;
+
+    }catch(Exception e){
+
+        e.printStackTrace();
+
+    }
+
+    return false;
+
 }
 
 }

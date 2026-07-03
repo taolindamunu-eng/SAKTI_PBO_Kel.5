@@ -78,6 +78,8 @@
 
                 <th>Tanggal</th>
 
+                <th>Aksi</th>
+
             </tr>
 
             </thead>
@@ -110,6 +112,22 @@
                 </td>
 
                 <td th:text="${t.tanggal}"></td>
+
+                <td>
+
+                <a
+                th:href="@{'/admin/transaksi/detail/' + ${t.idTransaksi}}">
+
+                <button
+                style="background:#1565c0;color:white;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
+
+                Detail
+
+                </button>
+
+                </a>
+
+                </td>
 
             </tr>
 

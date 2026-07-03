@@ -7,6 +7,7 @@ com\sakti\controller\PemesananController.class
 com\sakti\config\DatabaseConnection.class
 com\sakti\controller\HomeController.class
 com\sakti\controller\ReportController.class
+com\sakti\controller\AdminTransaksiController.class
 com\sakti\dao\destinasiDAO.class
 com\sakti\controller\DashboardController.class
 com\sakti\controller\LoginController.class
@@ -15,11 +16,16 @@ com\sakti\controller\DestinasiController.class
 com\sakti\model\user.class
 com\sakti\dao\pemesananDAO.class
 com\sakti\ui\TestWindow.class
+com\sakti\controller\PesanController.class
 com\sakti\model\admin.class
 com\sakti\SaktiApplication.class
+com\sakti\model\TransaksiView.class
+com\sakti\controller\AdminController.class
+com\sakti\controller\AdminDestinasiController.class
 com\sakti\report\ReportTiketPengunjung.class
 com\sakti\controller\ETicketController.class
 com\sakti\model\detail_destinasi_wisata.class
+com\sakti\controller\AdminTransaksiDetailController.class
 com\sakti\Main.class
 com\sakti\view\MenuUtama.class
 com\sakti\model\transaksi.class
